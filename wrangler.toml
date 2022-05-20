@@ -1,0 +1,26 @@
+name = "typescript-esbuild-jest"
+
+account_id = ""
+workers_dev = true
+
+compatibility_date = "2021-11-15"
+compatibility_flags = []
+
+main = "dist/index.mjs"
+
+[durable_objects]
+bindings = [
+  { name = "COUNTER", class_name = "Counter" }
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["Counter"]
+
+[build]
+command = "yarn build"
+
+[build.upload]
+# this shouldn't be needed but miniflare needs it for local testing
+format = "modules"
+
