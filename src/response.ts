@@ -1,4 +1,4 @@
-export function buildResponse(text: string, status = 200) {
+export function buildResponse(emoji: string, count: number, status = 200, json = false): Response {
   // Build a HTML response containing the text
   const html = `
     <!DOCTYPE html>
@@ -23,11 +23,23 @@ export function buildResponse(text: string, status = 200) {
         </style>
     </head>
     <body>
-        <h1>${text}</h1>
+        <h1>${emoji} ${count}</h1>
         <p><code>/:id/</code><code>/:id/increment</code><code>/:id/decrement</code></p>
     </body>
     </html>
   `;
+
+  if (json) {
+    return new Response(JSON.stringify({
+      count
+    }),
+        {
+          status,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+  }
 
   return new Response(html, {
     status,

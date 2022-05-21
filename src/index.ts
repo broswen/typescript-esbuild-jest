@@ -20,7 +20,7 @@ export async function handleRequest(request: Request, env: Env) {
   const stub = COUNTER.get(id);
   // ...removing the name prefix from URL
   url.pathname = match.groups.action;
-  return stub.fetch(url.toString());
+  return stub.fetch(url.toString(), {headers: request.headers});
 }
 
 const worker: ExportedHandler<Env> = { fetch: handleRequest };

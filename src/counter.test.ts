@@ -1,6 +1,7 @@
 const { COUNTER } = getMiniflareBindings();
-const id = COUNTER.newUniqueId();
-const stub = COUNTER.get(id);
+
+const id = COUNTER.newUniqueId()
+const stub = COUNTER.get(id)
 
 // Note this is beforeAll, not beforeEach, yet each test still has isolated storage.
 // See https://v2.miniflare.dev/jest.html#isolated-storage for more details.
@@ -21,7 +22,7 @@ test("should decrement count", async () => {
 });
 
 test("should get current count", async () => {
-  const res = await stub.fetch("http://localhost/");
+  const res = await stub.fetch(new Request("http://localhost/"));
   expect(await res.text()).toContain("➡️ 5");
 });
 
@@ -33,6 +34,18 @@ test("should default count to 0", async () => {
 });
 
 test("should return 404 on not found", async () => {
-  const res = await stub.fetch("http://localhost/unknown");
+  const res = await stub.fetch(new Request("http://localhost/unknown"));
   expect(res.status).toBe(404);
+});
+
+test("name should be what is requested", async () => {
+  const id = COUNTER.idFromName("test")
+  const obj = COUNTER.get(id)
+  expect(obj.name).toEqual("test")
+});
+
+test("should return json on accept type", async () => {
+  const res = await stub.fetch(new Request("http://localhost/", {headers: {Accept: 'application/json'}}));
+  const data = await res.json()
+  expect(data).toEqual({count:5});
 });
