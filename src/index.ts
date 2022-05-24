@@ -3,9 +3,12 @@ export { Counter } from "./counter";
 
 export type Env = {
   COUNTER: DurableObjectNamespace
+  TEST: string
+  SECRET: string
 }
 
 export async function handleRequest(request: Request, env: Env) {
+  console.log(env)
   // Match route against pattern /:name/*action
   const url = new URL(request.url);
   const match = /\/(?<name>[^/]+)(?<action>.*)/.exec(url.pathname);

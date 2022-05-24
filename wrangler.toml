@@ -8,16 +8,36 @@ compatibility_flags = []
 
 main = "src/index.ts"
 
-[durable_objects]
-bindings = [
+durable_objects.bindings = [
   { name = "COUNTER", class_name = "Counter" }
 ]
-
-[[migrations]]
-tag = "v1"
-new_classes = ["Counter"]
+[vars]
+TEST = "dev"
+SECRET = "dev secret"
 
 [build.upload]
 # this shouldn't be needed but miniflare needs it for local testing
 format = "modules"
 
+[env.staging]
+account_id = ""
+durable_objects.bindings = [
+  { name = "COUNTER", class_name = "Counter" }
+]
+
+[env.staging.vars]
+TEST = "staging"
+SECRET = "staging secret"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["Counter"]
+
+
+[env.production]
+account_id = ""
+durable_objects.bindings = [
+  { name = "COUNTER", class_name = "Counter" }
+]
+[env.production.vars]
+TEST = "production"
