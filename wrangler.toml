@@ -6,7 +6,7 @@ workers_dev = true
 compatibility_date = "2021-11-15"
 compatibility_flags = []
 
-main = "dist/index.mjs"
+main = "src/index.ts"
 
 [durable_objects]
 bindings = [
@@ -16,9 +16,6 @@ bindings = [
 [[migrations]]
 tag = "v1"
 new_classes = ["Counter"]
-
-[build]
-command = "yarn build"
 
 [build.upload]
 # this shouldn't be needed but miniflare needs it for local testing

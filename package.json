@@ -2,9 +2,9 @@
   "name": "typescript-esbuild-jest",
   "version": "1.0.0",
   "description": "Example project using Miniflare, TypeScript, esbuild and Jest",
-  "module": "./dist/index.mjs",
+  "module": "./dist/index.js",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --minify --sourcemap --format=esm --outfile=dist/index.mjs",
+    "build": "wrangler publish --minify --format=modules --dry-run --outdir dist",
     "dev": "wrangler dev -l",
     "publish": "wrangler publish",
     "test": "yarn build && NODE_OPTIONS=--experimental-vm-modules jest",
