@@ -11,4 +11,6 @@ $ yarn dev
 $ yarn test
 # Run code linting
 $ yarn lint
+# Update packages
+$ yarn updated-interactive
 ```
