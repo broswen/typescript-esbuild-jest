@@ -9,7 +9,7 @@
     "publish-staging": "wrangler publish --env staging",
     "publish-production": "wrangler publish --env production",
     "test": "yarn build && NODE_OPTIONS=--experimental-vm-modules jest",
-    "lint": "eslint src/**/* --ext .ts,.js"
+    "lint": "eslint --fix src/**/* --ext .ts,.js"
   },
   "keywords": [],
   "author": "",
