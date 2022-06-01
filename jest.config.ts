@@ -11,4 +11,8 @@ export default {
     "^(\\.{1,2}/.*)\\.js$": "$1",
   },
   testEnvironment: "miniflare",
+  testEnvironmentOptions: {
+    scriptPath: "dist/index.js",
+    modules: true
+  }
 };

@@ -15,10 +15,6 @@ durable_objects.bindings = [
 TEST = "dev"
 SECRET = "dev secret"
 
-[build.upload]
-# this shouldn't be needed but miniflare needs it for local testing
-format = "modules"
-
 [env.staging]
 account_id = ""
 durable_objects.bindings = [
